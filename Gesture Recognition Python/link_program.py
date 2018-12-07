@@ -136,6 +136,9 @@ def cameraWork(model):
                 cv2.drawContours(drawing, [hull], 0, (0, 0, 255), 3)
 
                 isFinishCal, cnt = calculateFingers(res, drawing)
+                if cnt == 1:
+                    print ("1 FINGER DETECTED")
+                # ENTER CODE HERE
                 global triggerSwitch
                 if triggerSwitch is True:
                     if isFinishCal is True and cnt <= 2:
