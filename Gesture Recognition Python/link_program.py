@@ -4,7 +4,7 @@ import copy
 import cv2
 import joblib
 import os
-from sklearn.svm import SVC
+# from sklearn.svm import SVC
 
 labels = {
     'left':0,
@@ -76,7 +76,7 @@ def mask_array(array, imask):
     return output
 
 
-def cameraWork(model):
+def cameraWork():
     global threshold
     global isBgCaptured
     camera = cv2.VideoCapture(0)
@@ -114,7 +114,7 @@ def cameraWork(model):
             ret, thresh = cv2.threshold(blur, threshold, 255, cv2.THRESH_BINARY)
             cv2.imshow('ori', thresh)
             drawing_r = cv2.resize(thresh, (SAVEX, SAVEY))
-            gesture_recognize(model,drawing_r)
+            # gesture_recognize(drawing_r)
 
             # get the coutours
             thresh1 = copy.deepcopy(thresh)
@@ -175,14 +175,14 @@ def cameraWork(model):
 
     print('!!!Trigger On!!!')
     return camera
-
-def gesture_recognize(model,img):
-    img_r = np.reshape(img, [-1, SAVEX * SAVEY])
-    out = model.predict(img_r)
-    pred = index_key[out[0]]
-    print (pred[1])
-    print ('Predicted %s' %pred[1] )
-    return out
+#
+# def gesture_recognize(model,img):
+#     img_r = np.reshape(img, [-1, SAVEX * SAVEY])
+#     out = model.predict(img_r)
+#     pred = index_key[out[0]]
+#     print (pred[1])
+#     print ('Predicted %s' %pred[1] )
+#     return out
 
 
 def calculateFingers(res, drawing):  # -> finished bool, cnt: finger count
@@ -212,6 +212,6 @@ def calculateFingers(res, drawing):  # -> finished bool, cnt: finger count
     return False, 0
 
 if __name__ == '__main__':
-    svm = joblib.load(os.path.join(os.path.split(os.getcwd())[0],'gesture_svm_linear.joblib'))
-    print ('SVM loaded!')
-    camera = cameraWork(svm)
+    # svm = joblib.load(os.path.join(os.path.split(os.getcwd())[0],'gesture_svm_linear.joblib'))
+    # print ('SVM loaded!')
+    camera = cameraWork()
