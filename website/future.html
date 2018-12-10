@@ -1,65 +1,68 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+    <title>Magic Mirror</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>
+		<!-- Wrapper -->
+			<div id="wrapper">
 
+				<!-- Header -->
+				<!-- Note: The "styleN" class below should match that of the banner element. -->
+					<header id="header" class="alt style2">
+						<a href="index.html" class="logo"><strong>ECE 5725</strong></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
 
-
-
-
-
-
-
-
-	<div>
-
-
-			<div>
-
-
-
-
-						<a href="http://index.html" target="_blank"><strong>ECE 5725</strong></a>
-
-							<a href="#0.2_menu">Menu</a>
-
-
-
-
-
-          <ul>
-            <li><a href="http://index.html" target="_blank">Home</a></li>
-            <li><a href="http://cv.html" target="_blank">Gesture Recognition</a></li>
-            <li><a href="http://ui.html" target="_blank">User Interface</a></li>
-
+				<!-- Menu -->
+        <nav id="menu">
+          <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cv.html">Gesture Recognition</a></li>
+            <li><a href="ui.html">User Interface</a></li>
+            <!-- <li><a href="challenges.html">Challenges</a></li> -->
           </ul>
+        </nav>
 
 
-
-
-
-
-						<div>
-							<span>
-								<img src="http://images/pic07.jpg" alt="">
+				<!-- Banner -->
+				<!-- Note: The "styleN" class below should match that of the header element. -->
+					<section id="banner" class="style2">
+						<div class="inner">
+							<span class="image">
+								<img src="images/pic07.jpg" alt="" />
 							</span>
-
+							<header class="major">
 								<h1>Conclusions</h1>
-
-							<div>
+							</header>
+							<div class="content">
 								<p>Though we faced several challenges, we were able to get a functional magic mirror to transition upon
                 some gestures. </p>
 							</div>
 						</div>
+					</section>
 
+				<!-- Main -->
+					<div id="main">
 
-
-					<div>
-
-
-
-								<div>
-
+						<!-- One -->
+							<section id="one">
+								<div class="inner">
+									<header class="major">
 										<h2>Results and Challenges</h2>
-
+									</header>
 <p>
   We faced several challenges in creating this project. One of the greatest challenges came in gesture recognition. Though we created models that were capable of inference given user-generated gestures, these were noisy and inaccurate because of
     variance in the lighting conditions and hand positions possible. Eventually, we got finger detection to work, but overall gesture recognition
@@ -67,21 +70,21 @@
     created model on the Pi would have been functional. Finally, the MagicMirror user-interface API is written in JavaScript while our gesture recognition software is written in Python, meaning
     control of the npm application synchronously with the Python interface through hardware was preferable to using direct software wrappers, as these wrappers would not work in real-time with respect to user input. However, the end product had a functional user interface
     that changed at a button press as common smart mirror technologies may, and had the added advantage of counting fingers
-    once the Raspberry Pi&#39;s GPIO output was configured properly in the backend. Thoughnot everything worked as intended, this project was still a meaningful learning experience that
+    once the Raspberry Pi's GPIO output was configured properly in the backend. Thoughnot everything worked as intended, this project was still a meaningful learning experience that
     produced a creative and useful application in its own right.
   </p>
 								</div>
+							</section>
 
+						<!-- Two -->
+							<section id="two" class="spotlights">
+								<section>
 
-
-
-
-
-									<div>
-										<div>
-
+									<div class="content">
+										<div class="inner">
+											<header class="major">
 												<h3>Future Work</h3>
-
+											</header>
 									<p>
                     The first future improvement we propose is installing scikit-learn and dependencies. Because we ran out of time, we were unable to
                     fully understand how effective our machine learning model was, and it was favorable for demonstration purposes to show finger recognition using OpenCV and Python logic.
@@ -90,54 +93,105 @@
                     </p>
 										</div>
 									</div>
+								</section>
 
+							</section>
 
-
-
-
-
-								<div>
-
+						<!-- Three -->
+							<section id="three">
+								<div class="inner">
+									<header class="major">
 										<h2>Work Division </h2>
-
+									</header>
 								<p>
                   Both partners contributed equally to this project. Asena was in charge of the front-end, working with the MagicMirror API and interfacing the
                   GPIO and the JavaScript code provided. Shubhom handled the gesture recognition portion of the project using the OpenCV, Tensorflow and scikit-learn portions.
                   Both of us worked on creating this website.
                   </p>
 								</div>
-
+							</section>
 
 					</div>
 
-
-
-
-						<div>
-              <ul>
-                <li><a href="https://twitter.com/shubhomb" target="_blank"><span>Twitter</span></a></li>
-                <li><a href="https://www.facebook.com/shubhomb/" target="_blank"><span>Facebook</span></a></li>
-                <li><a href="https://www.instagram.com/shubhomb/?hl=en" target="_blank"><span>Instagram</span></a></li>
-                <li><a href="https://github.com/shubhomb/" target="_blank"><span>GitHub</span></a></li>
-                <li><a href="https://www.linkedin.com/in/shubhom/" target="_blank"><span>LinkedIn</span></a></li>
+				<!-- Contact
+					<section id="contact">
+						<div class="inner">
+							<section>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<label for="name">Name</label>
+											<input type="text" name="name" id="name" />
+										</div>
+										<div class="field half">
+											<label for="email">Email</label>
+											<input type="text" name="email" id="email" />
+										</div>
+										<div class="field">
+											<label for="message">Message</label>
+											<textarea name="message" id="message" rows="6"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send Message" class="primary" /></li>
+										<li><input type="reset" value="Clear" /></li>
+									</ul>
+								</form>
+							</section>
+							<section class="split">
+								<section>
+									<div class="contact-method">
+										<span class="icon alt fa-envelope"></span>
+										<h3>Email</h3>
+										<a href="#">information@untitled.tld</a>
+									</div>
+								</section>
+								<section>
+									<div class="contact-method">
+										<span class="icon alt fa-phone"></span>
+										<h3>Phone</h3>
+										<span>(000) 000-0000 x12387</span>
+									</div>
+								</section>
+								<section>
+									<div class="contact-method">
+										<span class="icon alt fa-home"></span>
+										<h3>Address</h3>
+										<span>1234 Somewhere Road #5432<br />
+										Nashville, TN 00000<br />
+										United States of America</span>
+									</div>
+								</section>
+							</section>
+						</div>
+					</section>
+				-->
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+              <ul class="icons">
+                <li><a href="https://twitter.com/shubhomb" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="https://www.facebook.com/shubhomb/" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+                <li><a href="https://www.instagram.com/shubhomb/?hl=en" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="https://github.com/shubhomb/" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+                <li><a href="https://www.linkedin.com/in/shubhom/" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
               </ul>
-              <ul>
-                <li>© Cornell University</li><li>Design Credits: <a href="https://html5up.net" target="_blank">HTML5 UP</a></li>
+              <ul class="copyright">
+                <li>&copy; Cornell University</li><li>Design Credits: <a href="https://html5up.net">HTML5 UP</a></li>
               </ul>
 						</div>
-
+					</footer>
 
 			</div>
 
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
-
-
-
-
-
-
-
-
-	</div>
-
-</body></html>
+	</body>
+</html>

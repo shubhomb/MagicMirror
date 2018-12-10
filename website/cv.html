@@ -1,63 +1,66 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Magic Mirror</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>
+		<!-- Wrapper -->
+			<div id="wrapper">
 
+				<!-- Header -->
+				<!-- Note: The "styleN" class below should match that of the banner element. -->
+					<header id="header" class="alt style2">
+						<a href="index.html" class="logo"><strong>ECE 5725</strong></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
 
-
-
-
-
-
-
-
-	<div>
-
-
-			<div>
-
-
-
-
-						<a href="http://index.html" target="_blank"><strong>ECE 5725</strong></a>
-
-							<a href="#0.1_menu">Menu</a>
-
-
-
-
-
-						<ul>
-							<li><a href="http://index.html" target="_blank">Home</a></li>
-							<li><a href="http://ui.html" target="_blank">User Interface</a></li>
-
-							<li><a href="http://future.html" target="_blank">Conclusion</a></li>
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="ui.html">User Interface</a></li>
+							<li><a href="challenges.html">Challenges</a></li>
+							<li><a href="future.html">Future Work</a></li>
 						</ul>
+					</nav>
 
-
-
-
-
-						<div>
-							<span>
-								<img src="http://images/pic07.jpg" alt="">
+				<!-- Banner -->
+				<!-- Note: The "styleN" class below should match that of the header element. -->
+					<section id="banner" class="style2">
+						<div class="inner">
+							<span class="image">
+								<img src="images/pic07.jpg" alt="" />
 							</span>
-
+							<header class="major">
 								<h1>Gesture Recognition</h1>
-
-							<div>
+							</header>
+							<div class="content">
 								<p>Using OpenCV for image processing and machine learning inference</p>
 							</div>
 						</div>
+					</section>
 
+				<!-- Main -->
+					<div id="main">
 
-
-					<div>
-
-
-
-								<div>
-
+						<!-- One -->
+							<section id="one">
+								<div class="inner">
+									<header class="major">
 										<h2>Defining a Set of Gestures</h2>
-
+									</header>
 									<p> The first step for good gesture recognition was deciding upon a set of gestures.
                     The five gestures that we chose for this project were a left, right, ok, spidey, and peace sign gesture. These were chosen because
                     they were fun and easy for inference: they did not require motion tracking over a series of frames but were different enough
@@ -65,17 +68,19 @@
                   </p>
 
 								</div>
+							</section>
 
-
-
-
-
-                  <img src="http://images/gestures/hand.jpg" width="500" height="500" style="padding-right:2em;padding-top:2.5em">
-									<div>
-										<div>
-
+						<!-- Two -->
+							<section id="two" class="spotlights">
+								<section>
+									<a href="generic.html" class="image">
+										<img src="images/pic08.jpg" alt="" data-position="center center" />
+									</a>
+									<div class="content">
+										<div class="inner">
+											<header class="major">
 												<h3>Detecting the Hand and Fingers with OpenCV</h3>
-
+											</header>
                       <p>
                         The next step after deciding a set of gestures was collecting a training set for any algorithm
                         learning gestures to use. However, simply collecting image frames as input directly from the camera
@@ -83,29 +88,23 @@
                         subtract the background from the given image frame, resize it as necessary, convert it to black and white,
                         and perform edge detection to locate the hand and infer some gesture. Thankfully, OpenCV included many
                         useful built-in functions to do all of these things.
-                        The first important function for this was the Gaussian-Mixture OpenCV background remover, that essentially
-                        detected motion in successive image frames to separate the foreground and background.By finding which pixels
-                        were in the background,a mask was applied so that elements in the background were removed. Then, OpenCV
-                        found the Convex Hull of the foreground points to determine how many &quot;extreme&quot; points were visible in the frame.
-                        These extrema in the case of gestures corresponded to the ends of the fingers. Using this information we were able to
-                        differentiate a hand from the image.
-                        After this image processing, we collected 10,000 training images for the model, 2,000 per gesture using a webcam.
-                        These were downsampled to a black and white image with a 128x128 resolution to use as an input to the machine learning models.
+
 
 
                         </p>
 
 										</div>
 									</div>
+								</section>
+								<section>
 
+									<div class="content">
+                    <img src="images/gestures/models.jpg"  width = "500" data-position= "left-left" style="padding-right:2em; align: left " />
 
-
-									<div>
-
-										<div>
-
+										<div class="inner">
+											<header class="major">
 												<h3>Machine Learning for Image Detection</h3>
-
+											</header>
                       <p>
                         After collecting the training data, the next step was to use  machine learning algorithms to distinguish between
                         different gestures. After the image frames collected previously were imported and shuffled, the deep learning approach used convolutional neural networks to do this. Different neural network
@@ -117,62 +116,125 @@
                         The scikit-learn library was used to train three kernels: linear, radial basis function (RBF), and polynomial. The RBF and polynomial kernels
                         were not better than the CNN, but the linear SVM was quite successful, reporting training/testing accuracy over 95%. Empirical testing showed that
                         using the laptop webcam, the linear SVM was able to distinguish gestures with some success, though it was quite noisy presumably as a result of varying
-                        lighting conditions and hand locations.The goal was to load the trained model (which consumed about 700 MB of space) to the Raspberry Pi used onboard the Magic Mirror
-                        and allow it to do inference, but scikit-learn was not supported so we reverted to gesture recognition using fingers recognized, which did not use the machine learning component.
-
+                        lighting conditions and hand locations.
 
                         </p>
 
 										</div>
 									</div>
-                  <img src="http://images/gestures/models.jpg" width="500" height="500" style="padding-left:2em;padding-top:2.5em">
+								</section>
+								<section>
+									<a href="generic.html" class="image">
+										<img src="images/pic10.jpg" alt="" data-position="25% 25%" />
+									</a>
+									<div class="content">
+										<div class="inner">
+											<header class="major">
+												<h3>Sed nunc ligula</h3>
+											</header>
+											<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
+											<ul class="actions">
+												<li><a href="generic.html" class="button">Learn more</a></li>
+											</ul>
+										</div>
+									</div>
+								</section>
+							</section>
 
-
-
-
-
-
-								<div>
-
-										<h2></h2>
-
+						<!-- Three -->
+							<section id="three">
+								<div class="inner">
+									<header class="major">
+										<h2>Massa libero</h2>
+									</header>
 									<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus.</p>
-									<ul>
-										<li><a href="http://generic.html" target="_blank">Get Started</a></li>
+									<ul class="actions">
+										<li><a href="generic.html" class="button next">Get Started</a></li>
 									</ul>
 								</div>
-
+							</section>
 
 					</div>
 
-
-
-
-						<div>
-              <ul>
-								<li><a href="https://twitter.com/shubhomb" target="_blank"><span>Twitter</span></a></li>
-								<li><a href="https://www.facebook.com/shubhomb/" target="_blank"><span>Facebook</span></a></li>
-								<li><a href="https://www.instagram.com/shubhomb/?hl=en" target="_blank"><span>Instagram</span></a></li>
-								<li><a href="https://github.com/shubhomb/" target="_blank"><span>GitHub</span></a></li>
-								<li><a href="https://www.linkedin.com/in/shubhom/" target="_blank"><span>LinkedIn</span></a></li>
+				<!-- Contact
+					<section id="contact">
+						<div class="inner">
+							<section>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<label for="name">Name</label>
+											<input type="text" name="name" id="name" />
+										</div>
+										<div class="field half">
+											<label for="email">Email</label>
+											<input type="text" name="email" id="email" />
+										</div>
+										<div class="field">
+											<label for="message">Message</label>
+											<textarea name="message" id="message" rows="6"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send Message" class="primary" /></li>
+										<li><input type="reset" value="Clear" /></li>
+									</ul>
+								</form>
+							</section>
+							<section class="split">
+								<section>
+									<div class="contact-method">
+										<span class="icon alt fa-envelope"></span>
+										<h3>Email</h3>
+										<a href="#">information@untitled.tld</a>
+									</div>
+								</section>
+								<section>
+									<div class="contact-method">
+										<span class="icon alt fa-phone"></span>
+										<h3>Phone</h3>
+										<span>(000) 000-0000 x12387</span>
+									</div>
+								</section>
+								<section>
+									<div class="contact-method">
+										<span class="icon alt fa-home"></span>
+										<h3>Address</h3>
+										<span>1234 Somewhere Road #5432<br />
+										Nashville, TN 00000<br />
+										United States of America</span>
+									</div>
+								</section>
+							</section>
+						</div>
+					</section>
+				-->
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+              <ul class="icons">
+								<li><a href="https://twitter.com/shubhomb" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="https://www.facebook.com/shubhomb/" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+								<li><a href="https://www.instagram.com/shubhomb/?hl=en" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="https://github.com/shubhomb/" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="https://www.linkedin.com/in/shubhom/" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
 							</ul>
-							<ul>
-								<li>© Cornell University</li><li>Design Credits: <a href="https://html5up.net" target="_blank">HTML5 UP</a></li>
+							<ul class="copyright">
+								<li>&copy; Cornell University</li><li>Design Credits: <a href="https://html5up.net">HTML5 UP</a></li>
 							</ul>
 						</div>
-
+					</footer>
 
 			</div>
 
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
-
-
-
-
-
-
-
-
-	</div>
-
-</body></html>
+	</body>
+</html>
