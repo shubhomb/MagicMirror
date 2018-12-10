@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <!--
 	Forty by HTML5 UP
@@ -6,7 +7,7 @@
 -->
 <html>
 	<head>
-		<title>Labs</title>
+		<title>Magic Mirror</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -44,7 +45,7 @@
 								<img src="images/pic07.jpg" alt="" />
 							</span>
 							<header class="major">
-								<h1>Gesture Recognition </h1>
+								<h1>Gesture Recognition</h1>
 							</header>
 							<div class="content">
 								<p>Using OpenCV for image processing and machine learning inference</p>
@@ -59,9 +60,14 @@
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h2>Sed amet aliquam</h2>
+										<h2>Defining a Set of Gestures</h2>
 									</header>
-									<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna.</p>
+									<p> The first step for good gesture recognition was deciding upon a set of gestures.
+                    The five gestures that we chose for this project were a left, right, ok, spidey, and peace sign gesture. These were chosen because
+                    they were fun and easy for inference: they did not require motion tracking over a series of frames but were different enough
+                    to be distinguishable with one frame.
+                  </p>
+
 								</div>
 							</section>
 
@@ -74,28 +80,47 @@
 									<div class="content">
 										<div class="inner">
 											<header class="major">
-												<h3>Orci maecenas</h3>
+												<h3>Detecting the Hand and Fingers with OpenCV</h3>
 											</header>
-											<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
-											<ul class="actions">
-												<li><a href="generic.html" class="button">Learn more</a></li>
-											</ul>
+                      <p>
+                        The next step after deciding a set of gestures was collecting a training set for any algorithm
+                        learning gestures to use. However, simply collecting image frames as input directly from the camera
+                        is memory intensive and computationally expensive. The necessary image processing steps must
+                        subtract the background from the given image frame, resize it as necessary, convert it to black and white,
+                        and perform edge detection to locate the hand and infer some gesture. Thankfully, OpenCV included many
+                        useful built-in functions to do all of these things.
+
+
+
+                        </p>
+
 										</div>
 									</div>
 								</section>
 								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic09.jpg" alt="" data-position="top center" />
-									</a>
+
 									<div class="content">
+                    <img src="images/gestures/models.jpg"  width = "500" data-position= "left-left" style="padding-right:2em; align: left " />
+
 										<div class="inner">
 											<header class="major">
-												<h3>Rhoncus magna</h3>
+												<h3>Machine Learning for Image Detection</h3>
 											</header>
-											<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
-											<ul class="actions">
-												<li><a href="generic.html" class="button">Learn more</a></li>
-											</ul>
+                      <p>
+                        After collecting the training data, the next step was to use  machine learning algorithms to distinguish between
+                        different gestures. After the image frames collected previously were imported and shuffled, the deep learning approach used convolutional neural networks to do this. Different neural network
+                        architectures of 2-3 hidden layers, ReLU and tanh activations, and 128-256-512 nodes in each layer were trained with
+                        batch sizes of 16,32, and 64 for 10-12 epochs but most failed to converge. This is likely due to the extreme sparsity of the data. Each of these
+                        was coded in Tensorflow using the Keras module, but none failed to achieve training accuracy of over 40%, which was better than guessing at random (20%) but
+                        still not sufficient to recognize gesture reliable.
+                        So, we resorted to using a Support Vector Machine (SVM), believing this approach could handle data sparsity with greater success.
+                        The scikit-learn library was used to train three kernels: linear, radial basis function (RBF), and polynomial. The RBF and polynomial kernels
+                        were not better than the CNN, but the linear SVM was quite successful, reporting training/testing accuracy over 95%. Empirical testing showed that
+                        using the laptop webcam, the linear SVM was able to distinguish gestures with some success, though it was quite noisy presumably as a result of varying
+                        lighting conditions and hand locations.
+
+                        </p>
+
 										</div>
 									</div>
 								</section>
