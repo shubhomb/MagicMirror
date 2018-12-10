@@ -31,8 +31,8 @@
 						<ul class="links">
 							<li><a href="index.html">Home</a></li>
 							<li><a href="ui.html">User Interface</a></li>
-							<li><a href="challenges.html">Challenges</a></li>
-							<li><a href="future.html">Future Work</a></li>
+							<!-- <li><a href="challenges.html">Challenges</a></li> -->
+							<li><a href="future.html">Conclusion</a></li>
 						</ul>
 					</nav>
 
@@ -73,9 +73,7 @@
 						<!-- Two -->
 							<section id="two" class="spotlights">
 								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic08.jpg" alt="" data-position="center center" />
-									</a>
+                  <img src="images/gestures/hand.jpg"  width = "500"  height = "500" style="padding-right:2em;padding-top: 2.5em;   " />
 									<div class="content">
 										<div class="inner">
 											<header class="major">
@@ -88,7 +86,14 @@
                         subtract the background from the given image frame, resize it as necessary, convert it to black and white,
                         and perform edge detection to locate the hand and infer some gesture. Thankfully, OpenCV included many
                         useful built-in functions to do all of these things.
-
+                        The first important function for this was the Gaussian-Mixture OpenCV background remover, that essentially
+                        detected motion in successive image frames to separate the foreground and background.By finding which pixels
+                        were in the background,a mask was applied so that elements in the background were removed. Then, OpenCV
+                        found the Convex Hull of the foreground points to determine how many "extreme" points were visible in the frame.
+                        These extrema in the case of gestures corresponded to the ends of the fingers. Using this information we were able to
+                        differentiate a hand from the image.
+                        After this image processing, we collected 10,000 training images for the model, 2,000 per gesture using a webcam.
+                        These were downsampled to a black and white image with a 128x128 resolution to use as an input to the machine learning models.
 
 
                         </p>
@@ -99,7 +104,6 @@
 								<section>
 
 									<div class="content">
-                    <img src="images/gestures/models.jpg"  width = "500" data-position= "left-left" style="padding-right:2em; align: left " />
 
 										<div class="inner">
 											<header class="major">
@@ -116,43 +120,20 @@
                         The scikit-learn library was used to train three kernels: linear, radial basis function (RBF), and polynomial. The RBF and polynomial kernels
                         were not better than the CNN, but the linear SVM was quite successful, reporting training/testing accuracy over 95%. Empirical testing showed that
                         using the laptop webcam, the linear SVM was able to distinguish gestures with some success, though it was quite noisy presumably as a result of varying
-                        lighting conditions and hand locations.
+                        lighting conditions and hand locations.The goal was to load the trained model (which consumed about 700 MB of space) to the Raspberry Pi used onboard the Magic Mirror
+                        and allow it to do inference, but scikit-learn was not supported so we reverted to gesture recognition using fingers recognized, which did not use the machine learning component.
+
 
                         </p>
 
 										</div>
 									</div>
-								</section>
-								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic10.jpg" alt="" data-position="25% 25%" />
-									</a>
-									<div class="content">
-										<div class="inner">
-											<header class="major">
-												<h3>Sed nunc ligula</h3>
-											</header>
-											<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
-											<ul class="actions">
-												<li><a href="generic.html" class="button">Learn more</a></li>
-											</ul>
-										</div>
-									</div>
-								</section>
-							</section>
+                  <img src="images/gestures/models.jpg"  width = "500"  height = "500" style="padding-left:2em;padding-top: 2.5em;  " />
 
-						<!-- Three -->
-							<section id="three">
-								<div class="inner">
-									<header class="major">
-										<h2>Massa libero</h2>
-									</header>
-									<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus.</p>
-									<ul class="actions">
-										<li><a href="generic.html" class="button next">Get Started</a></li>
-									</ul>
-								</div>
-							</section>
+								</section>
+
+
+
 
 					</div>
 
