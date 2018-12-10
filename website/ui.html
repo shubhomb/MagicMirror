@@ -77,6 +77,7 @@
 											We had a PiCamera mounted on the top of the monitor. We used OpenCV to recognize gestures,
 											and these gestures controlled an aspect of the user interface.
 											We additionally had push buttons connected to our Raspberry Pi which also controlled the user interface.
+											<p><img src="images/systemOverview.PNG" alt="system overview!" width="952" height="410"></br>
 										 </p>
 								</div>
 							</section>
@@ -107,12 +108,12 @@
 									</br>
 										We changed the config file to add all these modules in, and our different pages of the mirror looked like this: </br>
 										<h3> Page 1 </h3>
-										<p><img src="images/page1.PNG" alt="page 1!" width="644" height="536">
+										<p><img src="images/page1.PNG" alt="page 1!" width="322" height="268"></br>
 										In the first page, we have the clock module in the top left corner, the current weather and weather forecast in the top right corner, and the newsfeed in the bottom middle.
 										The page indicator is at the bottom, the first circle filled in indicates that we are on the first page. </p>
 										 </p>
 										 <h3> Page 2 </h3>
-										 <p><img src="images/page2.PNG" alt="page 2!" width="655" height="566">
+										 <p><img src="images/page2.PNG" alt="page 2!" width="328" height="283"></br>
 										 In every page, we have the clock module again in the top left corner.
 										 Right below this, we have our calendar module displaying upcoming holidays, Christmas is coming up!!
 										 In the center of our page, we have our compliments module which cycles through
@@ -121,11 +122,11 @@
 									 </p>
 											</p>
 											<h3> Page 3 </h3>
-											<p><img src="images/page3.PNG" alt="page 3!" width="801" height="636">
+											<p><img src="images/page3.PNG" alt="page 3!" width="400" height="318"></br>
 											In page 3, we again have our clock, and page indicator. In the top right, we display a top post from Reddit, and in the bottom left, we display a random Bob Ross painting.  </p>
 											 </p>
 											 <h3> Page 4 </h3>
-											 <p><img src="images/page4.PNG" alt="page 4!" width="623" height="523">
+											 <p><img src="images/page4.PNG" alt="page 4!" width="311" height="261"></br>
 											 Page 4 is our Spiderman themed page! We again display the clock and page indicator.
 											 Covering the screen is a spider web image, which we display using the MMM-ImagesPhotos module. Below this, we use the helloworld module to display the text "spider! man!" </p>
 												</p>
@@ -137,6 +138,24 @@
 										<h2>Controlling the UI</h2>
 									</header>
 									<p>
+										We control the UI using gestures and buttons. Our gesture recognition is done in Python using OpenCV.
+										 We were able to detect whether a person was holding up a single finger, or not, reliably.
+										 We wanted to communicate between our python script and our user interface (Javascript) using software,
+										 but most of the methods of communication between python and Javascript we found online were not for two simultaneously running programs.
+										 One way we found that we could communicate was over hardware, GPIO pins.
+										 We tested this method of communication using push buttons first and the MMM-ModuleToggleButton module.
+										 This module displays/hides module when a button press was detected. So, we first build a push button circuits to an unused GPIO pin.
+										 We used the following circuit:</br>
+										 <img src="images/pushButton.PNG" alt="circuit" width="400" height="250"></br>
+										 Once we were able to connect a single push button to hiding/displaying a module. We tried to program the MMM-ModuleToggleButton to instead of toggling a module's display
+										 to change the page that was displayed. We did this by sending a "PAGE_CHANGED" notification to the MMM-Pages module with the payload of the page we desired to change to.
+										 We then built 3 more push button circuits, and copied the MMM-ModuleToggleButton module 3 more times. We disabled the functionality of toggling the display of a module,
+										 and added the functionality of changing the page using the "PAGE_CHANGED" notification with the proper payload. Then, we were able to change to any page we wanted using the four push buttons.</br>
+									 </br>
+										 Next, in our python script, if we detected a finger, we set a GPIO pin to high, and connected this pin with a 1000 k ohm resistor to another GPIO pin set to input.
+										 We read the input pin using another MMM-ModuleToggleButton module. When the output pin was read as high, we decided to hide the clock module.
+										 This did not work at first, and after trying a few different things, we figured out that if we send a pulse to the GPIO pin, rather than an indefinitely long high voltage, the MMM-ModuleToggleButton
+										 was able to detect it and hide the module properly.
 										 </p>
 								</div>
 							</section>
