@@ -131,6 +131,27 @@
                   <img src="images/models.jpg"  width = "500"  height = "500" style="padding-left:2em;padding-top: 2.5em;  " />
 
 								</section>
+<section>
+
+									<div class="content">
+
+										<div class="inner">
+											<header class="major">
+												<h3>Finger Detection</h3>
+											</header>
+                      <p>
+				Ultimately, the scikit-learn module did not load on the Raspberry Pi, due to what seemed to be an error in compatibility with Python 2 and (Stretch) Raspbian. As a result, we used OpenCV to 
+			      detect fingers, so that the convex hull of one point separated by under 90 degrees from an edge was recognized as a finger. Then, the UI could be updated 
+			      by signalling the intended page with the corresponding number of fingers. In practice, while multiple fingers were sometimes recognized, only holding up one finger was a 
+			      reliable gesture from the user-side, possible due to a combination of resolution and downsampling as well as lighting. We used this finger recognition to toggle
+			      the clock visibility. 
+
+                        </p>
+
+										</div>
+									</div>
+
+								</section>
 
 
 
